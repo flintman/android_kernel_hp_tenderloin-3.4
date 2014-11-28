@@ -462,3 +462,4 @@ struct rpm_regulator_platform_data tenderloin_rpm_regulator_early_pdata __devini
 	.vreg_id_vdd_dig	= RPM_VREG_ID_PM8058_S1,
 };
 
+

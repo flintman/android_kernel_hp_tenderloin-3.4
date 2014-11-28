@@ -979,7 +979,7 @@ pehci_hcd_qtd_schedule(phci_hcd	* hcd, struct ehci_qtd *qtd,
 	pehci_check("newqtd being scheduled, device: %d,map: %x\n",
 		    urb->dev->devnum, td_ptd_map->ptd_bitmap);
 
-	//udelay(100);
+	udelay(100);
 
 	memset(qha, 0, sizeof(isp1763_qha));
 	/*convert qtd to qha */
@@ -4494,8 +4494,9 @@ pehci_hcd_start(struct usb_hcd *usb_hcd)
 	isp1763_reg_write16(pehci_hcd->dev, pehci_hcd->regs.hwmodecontrol,
 		hwmodectrl);	
 	printk(KERN_NOTICE "Mode Ctrl Value after buswidth: %x\n", hwmodectrl);
-
+	mb();
 	isp1763_reg_write16(pehci_hcd->dev, pehci_hcd->regs.scratch, 0x3344);
+	ndelay(100);
 
 	ul_scratchval =
 		isp1763_reg_read16(pehci_hcd->dev, pehci_hcd->regs.scratch,
